@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+
+<body>
+	<div id="hello"></div>
+	<div id="goodmorning"></div>
+
+	<script type="text/jsx">
+		var HelloMessage = React.createClass({
+			render: function(){
+				return(
+					<h1 classsName = "headerStyle">
+						Hello ReactJS
+					</h1>
+				);
+			}
+		});
+		React.render(<HelloMessage/>, document.getElementById('hello'));
+
+		var messageStyle = {
+			color: "red",
+			border: "1px solid grey",
+			boxShadow: "2px 2px 2px lightGrey",
+			padding: "20px",
+			width: "200px"
+		},
+		GoodMorning = React.createClass({
+			render: function(){
+				return(
+					<div style={messageStyle}>
+						Good Morning Developers
+					</div>
+				);
+			}
+		});
+		React.render(<GoodMorning/>, document.getElementById('goodmorning'));
+	</script>
+	<!--<script src="index.js"></script>-->
+</body>
+</html>

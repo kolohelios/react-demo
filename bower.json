@@ -1,0 +1,23 @@
+{
+  "name": "react-demo",
+  "version": "0.0.1",
+  "authors": [
+    "Jon Edwards <jkedwards@me.com>"
+  ],
+  "description": "experimenting with the React.JS library",
+  "main": "index.html",
+  "keywords": [
+    "React.JS",
+    "JavaScript",
+    "HTML",
+    "CSS"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
