@@ -9,6 +9,8 @@
 <body>
 	<div id="hello"></div>
 	<div id="goodmorning"></div>
+	<div id="hellobutton"></div>
+	<div id="studentsreport"></div>
 
 	<script type="text/jsx">
 		var HelloMessage = React.createClass({
@@ -31,14 +33,60 @@
 		},
 		GoodMorning = React.createClass({
 			render: function(){
-				return(
-					<div style={messageStyle}>
+				return (
+					<div style = {messageStyle}>
 						Good Morning Developers
 					</div>
 				);
 			}
 		});
 		React.render(<GoodMorning/>, document.getElementById('goodmorning'));
+
+		var SayHello = React.createClass({
+			helloHandler: function(event){
+				alert("Hello Developers");
+			},
+			render: function(){
+				return (
+					<button onClick = {this.helloHandler}>
+						Click Me
+					</button>
+				);
+			}
+		});
+		React.render(<SayHello/>, document.getElementById('hellobutton'));
+
+		var StudentsReport = React.createClass({
+			render: function(){
+				var studentDetails = {
+					headerHTML:{
+						__html: '<i>Student List</i>'
+					},
+					subject: 'Mathematics',
+					list: [
+						{roll: 123, name: 'Jon'},
+						{roll: 124, name: 'Dave'}
+					]
+				};
+				return (
+					<div>
+						<h1 dangerouslySetInnerHTML = {studentDetails.headerHTML}></h1>
+						<h3 ref='subjectName'>{studentDetails.subject}</h3>
+						<ol>
+						{studentDetails.list.map(function(student){
+							return <li key={student.roll}>{student.name}</li>;
+						})}
+						</ol>
+						<button onClick={this.logSubject}>Log Subject</button>
+					</div>
+				);
+			},
+			logSubject: function(event){
+				console.log('Subject React Element: ', this.refs.subjectName);
+				console.log('Subject DOM Element: ', this.refs.subjectName.getDOMNode());
+			}
+		});
+		React.render(<StudentsReport/>, document.getElementById('studentsreport'));
 	</script>
 	<!--<script src="index.js"></script>-->
 </body>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+
+<body>
+	<script type="text/jsx">
+		var Welcome = React.createClass({
+			getDefaultProps: function(){
+				console.log('inside getDefaultProps method');
+				return{
+					myName: 'Steve'
+				};
+			}, getInitialState: function(){
+				console.log('inside getInitialState method');
+				return null;
+			}, componentWillMount: function(){
+				console.log('inside componentWillMount method');
+			}, componentDidMount: function(){
+				console.log('inside componentDidMount method');
+			}, render: function(){
+				console.log('inside render method');
+				return (
+					<div>
+						<h1>Welcome to {this.props.myName}</h1>
+						<button onClick = {this.changeName}>
+							Change myName to Jon
+						</button>
+						<button onClick = {this.removeHandler}>
+							Remove Welcome Element
+						</button>
+					</div>
+				);
+			}, componentWillReceiveProps: function(){
+				console.log('inside componentWillReceiveProps method');
+			}, shouldComponentUpdate: function(){
+				console.log('inside shouldComponentUpdate method');
+				return true;
+			}, componentWillUpdate: function(){
+				console.log('inside componentWillUpdate method');
+			}, componentDidUpdate: function(){
+				console.log('inside componentDidUpdate method');
+			}, componentWillUnmount: function(){
+				console.log('inside componentWillUnmount');
+			}, changeName: function(){
+				this.setProps({myName: "Jon"})
+			}, removeHandler: function(){
+				// found errata in the book here; the code provided didn't work
+				React.unmountComponentAtNode(this.getDOMNode().parentNode);
+			}
+		});
+		React.render(<Welcome/>, document.body);
+	</script>
+</body>
+</html>
