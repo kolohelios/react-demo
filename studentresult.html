@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+</head>
+
+<body>
+	<script type="text/jsx">
+		var StudentResult = React.createClass({
+			getInitialState: function(){
+				return {result: " " };
+			},
+			calculateResult: function(){
+				var refScore = this.refs.studentScore.getDOMNode().value, score = parseInt(refScore, 10);
+				// errata from the book; as written, the code will ignore a result of 30 because it's missed in the conditionals < 30 and > 30
+				if(score >= 30){
+					this.setState({result: 'PASS'});
+				}else if(score < 30){
+					this.setState({result: 'FAIL'});
+				}else{
+					this.setState({result: ''});
+				}
+			},
+			render: function(){
+				return (
+					<div className="score-container">
+						<input type="number" ref="studentScore" onChange={this.calculateResult} placeholder="Enter student score"/>
+						<h2>Result: {this.state.result}</h2>
+					</div>
+				);
+			}
+		});
+		React.render(<StudentResult/>, document.body);
+	</script>
+</body>
+</html>
