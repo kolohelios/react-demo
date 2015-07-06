@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<style>
+		.clock{
+			display: inline-flex;
+			justify-content: space-around;
+			background: purple;
+			font-size: 2rem;
+			font-family: serif;
+		}
+		.clock .hour, .clock .minute, .clock .second{
+			color: green;
+			padding: 1.5rem;
+			text-shadow: 0px 1px grey;
+		}
+	</style>
+</head>
+
+<body>
+	<script type="text/jsx">
+		var TsClock = React.createClass({
+			getDefaultProps: function(){
+				return{
+					hour: "HH",
+					minute: "MM",
+					second: "SS"
+				};
+			},
+			render: function(){
+				return (
+					<div className="clock">
+						<div className="hour">
+							{this.props.hour}
+						</div>
+						<div className="minute">
+							{this.props.minute}
+						</div>
+						<div className="second">
+							{this.props.second}
+						</div>
+					</div>
+				);
+			},
+			updateClock: function(){
+				var clock = new Date();
+				this.setProps({
+					hour: clock.getHours() < 10 ? '0' + clock.getHours() : clock.getHours(),
+					minute: clock.getMinutes() < 10 ? '0' + clock.getMinutes() : clock.getMinutes(),
+					second: clock.getSeconds() < 10 ? '0' + clock.getSeconds() : clock.getSeconds()
+				});
+			},
+			componentDidMount: function(){
+				window.setInterval(this.updateClock, 1000);
+			}
+		});
+		React.render(<TsClock/>, document.body);
+	</script>
+</body>
+</html>
